@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: automotive-vehicles-status
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true

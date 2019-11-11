@@ -1,0 +1,13 @@
+server:
+  port: 8052
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://awsguru202:awsguru202@cluster0-dvas1.mongodb.net/test?w=majority
+      database: automotive

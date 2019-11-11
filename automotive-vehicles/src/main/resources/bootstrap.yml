@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: automovite-vehicles
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
