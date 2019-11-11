@@ -1,6 +1,6 @@
 spring:
   application:
-    name: automovite-vehicles
+    name: automotive-vehicles
   cloud:
     config:
       uri: http://localhost:8888

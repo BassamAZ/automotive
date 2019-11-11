@@ -2,7 +2,7 @@
 
 The Connected Vehicle Solution is a reference implementation that provides a foundation for automotive product transformations for connected vehicle services.
 
-** With Connected Vehicle Cloud you can: **
+**With Connected Vehicle Cloud you can:**
 
 1. Securely offer connected services at a global scale
 2. Start simple and expand when the time is right

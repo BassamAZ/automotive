@@ -9,5 +9,5 @@ eureka:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://awsguru202:awsguru202@cluster0-dvas1.mongodb.net/test?w=majority
+      uri: mongodb+srv://awsguru202:awsguru202@cluster0-dvas1.mongodb.net/test?ssl=true&serverSelectionTimeoutMS=90000&connectTimeoutMS=90000&authSource=admin&retryWrites=true&authMechanism=SCRAM-SHA-1
       database: automotive
