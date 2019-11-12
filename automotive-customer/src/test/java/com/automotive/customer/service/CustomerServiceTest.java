@@ -33,9 +33,9 @@ public class CustomerServiceTest {
 
     @Test
     public void testFindByIdWithExitingValue() {
-        Customer customer=customerService.findById("199");
+        Customer customer=customerService.findById("1234");
 
-        Assert.assertEquals(customer.getName(),"Test Cust");
+        Assert.assertEquals(customer.getName(),"Kalles Grustransporter AB");
 
     }
 

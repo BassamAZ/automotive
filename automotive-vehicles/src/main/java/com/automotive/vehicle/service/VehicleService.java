@@ -1,15 +1,17 @@
 package com.automotive.vehicle.service;
 
-import com.automotive.vehicle.model.Status;
-import com.automotive.vehicle.model.Vehicle;
-import com.automotive.vehicle.repo.VehicleRepository;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import com.automotive.vehicle.model.Status;
+import com.automotive.vehicle.model.Vehicle;
+import com.automotive.vehicle.repo.VehicleRepository;
 
 @Service
 public class VehicleService {
@@ -84,11 +86,14 @@ public class VehicleService {
         return vehicle;
     }
 
+    public Vehicle createVehicle( Vehicle  vehicle){
 
+        if (vehicle==null){
+        	
+            throw new IllegalArgumentException("vehicle is mandatory input");
+        }
+        vehicle.setLastUpdatedDate(LocalDateTime.now());
 
-
-	
-	
-	
-
+        return vehicleRepository.save(vehicle);
+    }
 }

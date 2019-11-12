@@ -1,7 +1,7 @@
 package com.automotive.customer.controller;
 
-
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,29 +23,27 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
-	
+
 	@GetMapping("/customer")
-	public List <Customer> getAllCustomers(){
+	public List<Customer> getAllCustomers() {
 		return customerService.findAll();
 	}
 
 	@GetMapping("/customer/{id}")
-	public Customer getCustomer(@PathVariable("id")String id){
+	public Customer getCustomer(@PathVariable("id") String id) {
 		return customerService.findById(id);
 
 	}
 
 	@PostMapping("/customer")
-	public Customer registerCustomer(@RequestBody Customer customer){
+	public Customer registerCustomer(@RequestBody Customer customer) {
 		return customerService.createCustomer(customer);
 
 	}
 
-
-	public Customer getDummyCustomer(String id){
+	public Customer getDummyCustomer(String id) {
 		return customerService.findDummyCustomer();
 	}
-
 
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
@@ -53,5 +51,11 @@ public class CustomerController {
 
 	public CustomerService getCustomerService() {
 		return customerService;
+	}
+
+	@PostMapping("/customer/linkVehicle")
+	public Customer linkVehicleToCustomer( @RequestBody Map<String, String> linkeRequest) {
+		return customerService.linkVehicleToCustomer(linkeRequest.get("vehicleId"), linkeRequest.get("customerId"));
+
 	}
 }

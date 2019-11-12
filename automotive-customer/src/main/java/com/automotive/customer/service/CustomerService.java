@@ -57,12 +57,11 @@ public class CustomerService {
 
         return customer;
     }
+    public Customer linkVehicleToCustomer( String vehicleId, String customerId){
 
-
-
-
-	
-	
-	
+    	Customer customer = findById(customerId);
+    	customer.getVehicleIds().add(vehicleId);
+        return customerRepository.save(customer);
+    }
 
 }
