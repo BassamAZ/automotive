@@ -1,0 +1,33 @@
+sudo: required
+language: java
+jdk: oraclejdk8
+install: true
+
+cache:
+  directories:
+  - "$HOME/.cache"
+addons:
+  sonarcloud:
+    organization: "mohamedibrahim-java" # the key of the org you chose at step #3
+    token:
+      secure: ZKU2Ure1whSVltqH7uETBw # encrypted value of your token
+      
+services:
+  - docker
+
+before_install:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  
+script: 
+    #- cd fms-dashboard
+    #- docker build -t $DOCKER_USERNAME/fms-dashboard:$TRAVIS_BUILD_ID .
+    #- docker push $DOCKER_USERNAME/fms-dashboard:$TRAVIS_BUILD_ID
+    
+    - cd automotive-config
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID
+   
+#after_success:
+   # - bash <(curl -s https://codecov.io/bash)
