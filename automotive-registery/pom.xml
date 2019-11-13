@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.automotive</groupId>
-	<artifactId>automotive-registery</artifactId>
+	<artifactId>automotive-registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>automotive-registery</name>
+	<name>automotive-registry</name>
 	<description>connected vehicles solution</description>
 
 	<properties>

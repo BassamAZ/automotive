@@ -6,9 +6,9 @@ RUN apk update && apk add bash
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 
-ARG JAR_FILE=target/automotive-registery-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/automotive-registry-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} $PROJECT_HOME/app.jar
 
 WORKDIR $PROJECT_HOME
 
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","./app.jar","automotive-registery"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","./app.jar","automotive-registry"]
