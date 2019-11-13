@@ -26,11 +26,11 @@ script:
     - docker build -t $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID
    
-    - cd ../automotive-registry
+    - cd ../automotive-registery
     - mvn clean install -DskipTests -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
     #- sonar-scanner
     - docker build -t $DOCKER_USERNAME/automotive-registry:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/automotive-registry:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/automotive-registery:$TRAVIS_BUILD_ID
     
     - cd ../automotive-gateway
     - mvn clean install -DskipTests -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
@@ -54,6 +54,6 @@ script:
     - mvn clean install -DskipTests -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
     #- sonar-scanner
     - docker build -t $DOCKER_USERNAME/automotive-simulator:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/fms-simulator:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/automotive-simulator:$TRAVIS_BUILD_ID
 #after_success:
    # - bash <(curl -s https://codecov.io/bash)
