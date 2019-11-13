@@ -19,9 +19,6 @@ before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   
 script: 
-    #- cd fms-dashboard
-    #- docker build -t $DOCKER_USERNAME/fms-dashboard:$TRAVIS_BUILD_ID .
-    #- docker push $DOCKER_USERNAME/fms-dashboard:$TRAVIS_BUILD_ID
     
     - cd automotive-config
     - mvn clean install
@@ -29,5 +26,34 @@ script:
     - docker build -t $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/automotive-config:$TRAVIS_BUILD_ID
    
+    - cd ../automotive-registry
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-registry:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/automotive-registry:$TRAVIS_BUILD_ID
+    
+    - cd ../automotive-gateway
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-gateway:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/automotive-gateway:$TRAVIS_BUILD_ID
+    
+    - cd ../automotive-customer
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-customer:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/automotive-customer:$TRAVIS_BUILD_ID
+    
+    - cd ../automotive-vehicles-status
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-vehicles-status:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/automotive-vehicles-status:$TRAVIS_BUILD_ID
+    
+    - cd ../automotive-simulator
+    - mvn clean install
+    #- sonar-scanner
+    - docker build -t $DOCKER_USERNAME/automotive-simulator:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/fms-simulator:$TRAVIS_BUILD_ID
 #after_success:
    # - bash <(curl -s https://codecov.io/bash)
