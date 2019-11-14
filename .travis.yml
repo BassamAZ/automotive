@@ -55,5 +55,5 @@ script:
     #- sonar-scanner
     - docker build -t $DOCKER_USERNAME/automotive-simulator:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/automotive-simulator:$TRAVIS_BUILD_ID
-#after_success:
-   # - bash <(curl -s https://codecov.io/bash)
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
