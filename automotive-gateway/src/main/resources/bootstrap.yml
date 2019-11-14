@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: automotive-gateway
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      
+
+zuul:
+  routes:
+    vehicle:
+      url: http://localhost:8050/automotive/vehicle
+      path: /automotive/vehicle/**
+    customer:
+      url: http://localhost:8051/automotive/customer
+      path: /automotive/customer/**
+    status:
+      url: http://localhost:8052/automotive/status
+      path: /automotive/status/**
