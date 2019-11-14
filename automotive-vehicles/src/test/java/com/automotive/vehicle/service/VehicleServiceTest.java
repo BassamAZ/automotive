@@ -1,105 +1,196 @@
 package com.automotive.vehicle.service;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.automotive.vehicle.model.Vehicle;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
-@SpringBootTest
+import com.automotive.vehicle.model.Status;
+import com.automotive.vehicle.model.Vehicle;
+import com.automotive.vehicle.repo.VehicleRepository;
+
+@RunWith(MockitoJUnitRunner.class)
 public class VehicleServiceTest {
 
-	@Autowired
+	@Mock
+	private VehicleRepository vehicleRepositoryMock;
+
+	@InjectMocks
 	VehicleService vehicleService;
+
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testFindAll() {
 
-		List<Vehicle> customerList=vehicleService.findAll();
-		Assert.assertEquals(customerList.size(),customerList.size());
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("YS2R4X20005399401", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		assertThat("size is equal to 1", vehicleService.findAll().size(), is(1));
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testFindByIdWithEmptyValue() {
-		vehicleService.findById("");
+
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("YS2R4X20005399401", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		assertThat("size is equal to 0", vehicleService.findById(""), is(0));
 	}
 
 	@Test
 	public void testFindByIdWithExitingValue() {
-		Vehicle vehicle=vehicleService.findById("5c2e7c423650c5ca72a8e661");
 
-		Assert.assertEquals(vehicle.getModel(),"bmw");
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+		assertThat("size is equal to 1", vehicleService.findById("VLUR4X20009093588"), is(1));
 
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testFindByNameWithEmptyValue() {
-		vehicleService.findByName("");
-	}
+//	@Test(expected = IllegalArgumentException.class)
+//	public void testFindByNameWithEmptyValue() {
+//		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+//			{
+//				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+//						Status.CONNECTED.getStatusCode()));
+//			}
+//		};
+//
+//		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+//
+//		vehicleService.findByName("VLUR4X20009093588XCZ");
+//	}
 
 	@Test
 	public void testFindByNameWithExitingValue() {
-		List<Vehicle> vehicle=vehicleService.findByName("cartest");
 
-		Assert.assertEquals(vehicle.size(),vehicle.size());
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		assertThat("size is equal to 1", vehicleService.findByName("FORD"), is(1));
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testFindByPlateNumberWithEmptyValue() {
+
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
 		vehicleService.findByPlateNumber("");
 	}
 
 	@Test
 	public void testFindByPlateNumberWithExistingValue() {
-		Vehicle vehicle=vehicleService.findByPlateNumber("1234");
 
-		Assert.assertEquals(vehicle.getModel(),"bmw");
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		assertThat("size is equal to 1", vehicleService.findByPlateNumber("ABC123"), is(1));
 
 	}
 
-	@org.junit.Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testFindByRegistrationNumberWithEmptyValue() {
+
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
 		vehicleService.findByRegistrationNumber("");
+
+		// assertThatIllegalArgumentException();
 	}
 
 	@Test
 	public void testFindByRegistrationNumberWithExistingValue() {
-		Vehicle vehicle=vehicleService.findByRegistrationNumber("4321");
 
-		Assert.assertEquals(vehicle.getModel(),"bmw");
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009048066", "Raptor", "F150", "GHI789", "GHI789",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		assertThat("size is equal to 1", vehicleService.findByRegistrationNumber("GHI789"), is(1));
 
 	}
 
 	@Test
 	public void testPingWithExitingValue() {
-		Optional<Vehicle> vehicleList=vehicleService.pulse("5c2e7c423650c5ca72a8e661");
-		Assert.assertEquals(vehicleList.isPresent(),true);
+
+		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
+			{
+				add(new Vehicle("VLUR4X20009048066", "Raptor", "F150", "GHI789", "GHI789",
+						Status.CONNECTED.getStatusCode()));
+			}
+		};
+
+		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+
+		Optional<Vehicle> vehicle = vehicleService.pulse("VLUR4X20009048066");
+
+		Assert.assertEquals(true, vehicle.isPresent());
 
 	}
-
-	@org.junit.Test(expected = IllegalArgumentException.class)
-	public void testPingWithEmptyValue() {
-		Optional<Vehicle> vehicleList=vehicleService.pulse("");
-
-	}
-
-
-	@Test
-	public void testFindDummyVehicle() {
-		Vehicle vehicle=vehicleService.findDummyVehicle();
-
-		Assert.assertEquals(vehicle,vehicle);
-	}
-
-
-
 
 }

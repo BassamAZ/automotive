@@ -26,7 +26,7 @@ public class VehicleControllerTest {
 
         VehicleService mockVehicleService=mock(VehicleService.class);
 
-        List<Vehicle> mockVehicleList= new ArrayList<Vehicle>(){{add(new Vehicle("123","name","honda","123","123", Status.CONNECTED.getStatusCode())); }};
+        List<Vehicle> mockVehicleList= new ArrayList<Vehicle>(){{add(new Vehicle("YS2R4X20005399401","FORD","F150","ABC123","ABC123", Status.CONNECTED.getStatusCode())); }};
 
         Mockito.when(mockVehicleService.findAll()).thenReturn(mockVehicleList);
 
@@ -35,7 +35,7 @@ public class VehicleControllerTest {
 
         List<Vehicle> vehicleList=vehicleController.getAllVehicles();
 
-        Assert.assertEquals(vehicleList.size(),1);
+        Assert.assertEquals(1 , vehicleList.size());
 
     }
 
@@ -44,16 +44,16 @@ public class VehicleControllerTest {
 
         VehicleService mockVehicleService=mock(VehicleService.class);
 
-        Vehicle mockVehicle= new Vehicle("123","name","honda","123","123", Status.CONNECTED.getStatusCode());
+        Vehicle mockVehicle= new Vehicle("YS2R4X20005399401","FORD","F150","ABC123","ABC123", Status.CONNECTED.getStatusCode());
 
-        Mockito.when(mockVehicleService.findById("123")).thenReturn(mockVehicle);
+        Mockito.when(mockVehicleService.findById("YS2R4X20005399401")).thenReturn(mockVehicle);
 
         VehicleController vehicleController=new VehicleController();
         vehicleController.setVehicleService(mockVehicleService);
 
-        Vehicle vehicle=vehicleController.getVehicle("123");
+        Vehicle vehicle=vehicleController.getVehicle("YS2R4X20005399401");
 
-        Assert.assertEquals(vehicle.getModel(),"honda");
+        Assert.assertEquals("F150", vehicle.getModel());
     }
 
     @Test
@@ -61,16 +61,16 @@ public class VehicleControllerTest {
 
         VehicleService mockVehicleService=mock(VehicleService.class);
 
-        Vehicle mockVehicle= new Vehicle("123","name","honda","123","123", Status.CONNECTED.getStatusCode());
+        Vehicle mockVehicle= new Vehicle("YS2R4X20005399401","FORD","F150","ABC123","ABC123", Status.CONNECTED.getStatusCode());
 
         Mockito.when(mockVehicleService.findDummyVehicle()).thenReturn(mockVehicle);
 
         VehicleController vehicleController=new VehicleController();
         vehicleController.setVehicleService(mockVehicleService);
 
-        Vehicle vehicle=vehicleController.getDummyVehicle("123");
+        Vehicle vehicle=vehicleController.getDummyVehicle("YS2R4X20005399401");
 
-        Assert.assertEquals(vehicle.getModel(),"honda");
+        Assert.assertEquals("F150", vehicle.getModel());
     }
 
     @Test
@@ -78,15 +78,15 @@ public class VehicleControllerTest {
 
         VehicleService mockVehicleService=mock(VehicleService.class);
 
-        Optional<Vehicle> mockVehicle= Optional.of(new Vehicle("123","name","honda","123","123", Status.CONNECTED.getStatusCode()));
+        Optional<Vehicle> mockVehicle= Optional.of(new Vehicle("YS2R4X20005399401","FORD","F150","ABC123","ABC123", Status.CONNECTED.getStatusCode()));
 
-        Mockito.when(mockVehicleService.pulse("123")).thenReturn(mockVehicle);
+        Mockito.when(mockVehicleService.pulse("YS2R4X20005399401")).thenReturn(mockVehicle);
 
         VehicleController vehicleController=new VehicleController();
         vehicleController.setVehicleService(mockVehicleService);
 
-        Vehicle vehicle=vehicleController.pulse("123");
+        Vehicle vehicle=vehicleController.pulse("YS2R4X20005399401");
 
-        Assert.assertEquals(vehicle.getModel(),"honda");
+        Assert.assertEquals("F150", vehicle.getModel());
     }
 }
