@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/811a161aa7de46b688ad76345809f2f4)](https://www.codacy.com/manual/mohamedibrahim-java/automotive?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mohamedibrahim-java/automotive&amp;utm_campaign=Badge_Grade)
+
 # **Connected Vehicle Solution**
 
 The Connected Vehicle Solution is a reference implementation that provides a foundation for automotive product transformations for connected vehicle services.

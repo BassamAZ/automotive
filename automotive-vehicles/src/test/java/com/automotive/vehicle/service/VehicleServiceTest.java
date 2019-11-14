@@ -1,9 +1,11 @@
 package com.automotive.vehicle.service;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +43,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("YS2R4X20005399401", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -51,19 +53,20 @@ public class VehicleServiceTest {
 
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testFindByIdWithEmptyValue() {
 
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("YS2R4X20005399401", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
 		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
 
-		assertThat("size is equal to 0", vehicleService.findById(""), is(0));
+		assertNull(vehicleService.findById("VLUR4X20009093588"));
+//		assertThat("size is equal to 0", vehicleService.findById("123"), is(null));
 	}
 
 	@Test
@@ -71,13 +74,14 @@ public class VehicleServiceTest {
 
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
-				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+				add(new Vehicle("123", "FORD", "F150", "ABC123", "ABC123",
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
-		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
-		assertThat("size is equal to 1", vehicleService.findById("VLUR4X20009093588"), is(1));
+//		when(vehicleRepositoryMock.findAll()).thenReturn(vehicleListMock);
+		when(vehicleService.findById("123")).thenReturn(vehicleListMock.get(0));
+		assertThat("size is equal to 1", vehicleService.findById("123"), is(1));
 
 	}
 
@@ -101,7 +105,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -117,7 +121,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -132,7 +136,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -148,7 +152,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009093588", "FORD", "F150", "ABC123", "ABC123",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -165,7 +169,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009048066", "Raptor", "F150", "GHI789", "GHI789",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
@@ -181,7 +185,7 @@ public class VehicleServiceTest {
 		List<Vehicle> vehicleListMock = new ArrayList<Vehicle>() {
 			{
 				add(new Vehicle("VLUR4X20009048066", "Raptor", "F150", "GHI789", "GHI789",
-						Status.CONNECTED.getStatusCode()));
+						Status.CONNECTED.getStatusCode(),LocalDateTime.now()));
 			}
 		};
 
