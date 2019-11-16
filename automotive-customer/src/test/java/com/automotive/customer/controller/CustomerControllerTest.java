@@ -30,7 +30,7 @@ public class CustomerControllerTest {
         	
 			private static final long serialVersionUID = 1L;
 
-		{add(new Customer("33333","name","21",Stream.of("1","2").collect(Collectors.toList())));  }} ;
+		{add(new Customer("33333","Software Eng","Dubai","name","21",Stream.of("1","2").collect(Collectors.toList())));  }} ;
 
         Mockito.when(mockCustomerService.findAll()).thenReturn(mockCustomerList);
 
@@ -49,7 +49,7 @@ public class CustomerControllerTest {
 
         CustomerService mockCustomerService=mock(CustomerService.class);
 
-        Customer mockCustomer= new Customer("33333","name","21",Stream.of("1","2").collect(Collectors.toList())) ;
+        Customer mockCustomer= new Customer("33333","name","Software Eng","Dubai","21",Stream.of("1","2").collect(Collectors.toList())) ;
 
         Mockito.when(mockCustomerService.findById("33333")).thenReturn(mockCustomer);
 
@@ -66,7 +66,7 @@ public class CustomerControllerTest {
 
         CustomerService mockCustomerService=mock(CustomerService.class);
 
-        Customer mockCustomer= new Customer("33333","name","21",Stream.of("1","2").collect(Collectors.toList())) ;
+        Customer mockCustomer= new Customer("33333","name","Software Eng","Dubai","21",Stream.of("1","2").collect(Collectors.toList())) ;
 
         Mockito.when(mockCustomerService.createCustomer(mockCustomer)).thenReturn(mockCustomer);
 
@@ -83,7 +83,7 @@ public class CustomerControllerTest {
 
         CustomerService mockCustomerService=mock(CustomerService.class);
 
-        Customer mockCustomer= new Customer("33333","name","21",Stream.of("1","2").collect(Collectors.toList())) ;
+        Customer mockCustomer= new Customer("33333","name","Software Eng","Dubai","21",Stream.of("1","2").collect(Collectors.toList())) ;
 
         Mockito.when(mockCustomerService.findDummyCustomer()).thenReturn(mockCustomer);
 

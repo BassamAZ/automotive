@@ -22,7 +22,9 @@ public class Customer {
     @Id
     private String id;
     private String name;
+    private String title;
     private String age;
+    private String address;
     private List<String> vehicleIds;
 
 

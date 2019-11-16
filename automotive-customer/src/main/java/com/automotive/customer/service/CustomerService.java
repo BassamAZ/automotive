@@ -60,7 +60,16 @@ public class CustomerService {
     public Customer linkVehicleToCustomer( String vehicleId, String customerId){
 
     	Customer customer = findById(customerId);
-    	customer.getVehicleIds().add(vehicleId);
+    	
+    	if(customer.getVehicleIds() != null) {
+    		customer.getVehicleIds().add(vehicleId);
+    	}else {
+    		customer.setVehicleIds(new ArrayList<>());
+    		customer.getVehicleIds().add(vehicleId);
+    		
+    	}
+    	
+    	
         return customerRepository.save(customer);
     }
 
